@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shape Calculator</title>
+<style>
+  body {
+    background-color: #f0f0f0; /* Colloid background */
+    font-family: Arial, sans-serif;
+  }
+  
+  h1 {
+    text-align: center;
+    color: #333;
+  }
+  
+  form {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  label {
+    font-weight: bold;
+  }
+  
+  input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  #result {
+    margin-top: 20px;
+    text-align: center;
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+<h1>Shape Calculator</h1>
+<form id="shapeForm">
+  <label for="shapeSelect">Select a Shape:</label>
+  <select id="shapeSelect" name="shape">
+    <option value="triangle">Triangle</option>
+    <option value="circle">Circle</option>
+    <option value="rectangle">Rectangle</option>
+    <option value="sphere">Sphere</option>
+    <option value="cube">Cube</option>
+  </select>
+  <br>
+  <label for="lengthInput">Length:</label>
+  <input type="number" id="lengthInput" name="length">
+  <br>
+  <label for="heightInput">Height:</label>
+  <input type="number" id="heightInput" name="height">
+  <br>
+  <label for="breadthInput">Breadth:</label>
+  <input type="number" id="breadthInput" name="breadth">
+  <br>
+  <label for="radiusInput">Radius:</label>
+  <input type="number" id="radiusInput" name="radius">
+  <br>
+  <button type="submit">Calculate</button>
+</form>
+
+<div id="result"></div>
+
+<script>
+document.getElementById('shapeForm').addEventListener('submit', function(event) {
+  event.preventDefault();
+  const shape = document.getElementById('shapeSelect').value;
+  const length = parseFloat(document.getElementById('lengthInput').value);
+  const height = parseFloat(document.getElementById('heightInput').value);
+  const breadth = parseFloat(document.getElementById('breadthInput').value);
+  const radius = parseFloat(document.getElementById('radiusInput').value);
+  
+  let result = '';
+  
+  if (shape === 'triangle') {
+    result = `Area: ${0.5 * length * height}`;
+  } else if (shape === 'circle') {
+    result = `Area: ${Math.PI * radius * radius}`;
+  } else if (shape === 'rectangle') {
+    result = `Area: ${length * breadth}`;
+  } else if (shape === 'sphere') {
+    result = `Area: ${4 * Math.PI * radius * radius}, Volume: ${4/3 * Math.PI * radius * radius * radius}`;
+  } else if (shape === 'cube') {
+    result = `Area: ${6 * length * length}, Volume: ${length * length * length}`;
+  }
+  
+  document.getElementById('result').textContent = result;
+});
+</script>
+</body>
+</html>
